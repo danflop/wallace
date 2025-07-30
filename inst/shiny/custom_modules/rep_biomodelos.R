@@ -74,12 +74,6 @@ rep_biomodelos_module_server <- function(input, output, session, common) {
         type = "error")
       #return()
     }
-    # if (is.null(spp[[bioSp()]]$biomodelos$prediction)) {
-    #   shinyalert::shinyalert(
-    #     "You need a map prediction built on Wallace before pushing to BioModelos. ",
-    #     type = "error")
-    #  # return()
-    # }
 
     URL <- 'https://api-biomodelos.humboldt.org.co/v2/models'
 
@@ -382,7 +376,7 @@ rep_biomodelos_module_server <- function(input, output, session, common) {
 
 
   ### Create ZIP File
-    tmpZIP <- file.path(tmpdir, paste0(spp[[bioSp()]], '.zip'))
+    tmpZIP <- file.path(tmpdir, paste0(spp[[bioSp()]]$rmm$code$wallace$biomodelosTaxID, '.zip'))
     filesZIP <- c(tmpRMM, tmpRMD)
     if (!is.null(spp[[bioSp()]]$occData$occsOrig)) {
       filesZIP <- c(filesZIP, tmpOccs)
